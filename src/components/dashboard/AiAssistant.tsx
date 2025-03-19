@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import DashboardCard from '@/components/ui/DashboardCard';
 import { cn } from '@/lib/utils';
 import { Send, Bot, User, RefreshCw } from 'lucide-react';
@@ -27,6 +27,15 @@ const AiAssistant: React.FC = () => {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const handleSendMessage = () => {
     if (!input.trim()) return;
@@ -37,7 +46,7 @@ const AiAssistant: React.FC = () => {
       isBot: false
     };
     
-    setMessages([...messages, userMessage]);
+    setMessages(prev => [...prev, userMessage]);
     setInput("");
     setIsLoading(true);
     
@@ -51,7 +60,7 @@ const AiAssistant: React.FC = () => {
         isBot: true
       };
       
-      setMessages((prev) => [...prev, botMessage]);
+      setMessages(prev => [...prev, botMessage]);
       setIsLoading(false);
     }, 1500);
   };
@@ -114,6 +123,7 @@ const AiAssistant: React.FC = () => {
               </div>
             </div>
           )}
+          <div ref={messagesEndRef} />
         </div>
       </div>
       

@@ -18,7 +18,7 @@ import { useIsMobile } from "./hooks/use-mobile";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [isSidebarOpen, setSidebarOpen] = useState(true);
   const isMobile = useIsMobile();
 
   return (
@@ -30,8 +30,7 @@ const App = () => {
           <div className="flex h-screen overflow-hidden bg-background">
             <Sidebar isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
             
-            <div className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 
-              ${isMobile ? "" : (isSidebarOpen ? "ml-64" : "ml-0")}`}>
+            <div className="flex-1 flex flex-col overflow-hidden transition-all duration-300">
               <Routes>
                 <Route 
                   path="/" 
