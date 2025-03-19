@@ -52,7 +52,7 @@ const reviews = [
     avatar: 'LC',
     date: '1 month ago',
     rating: 5,
-    content: 'Best in town! I've tried several competitors and nobody comes close to the quality and service provided here.',
+    content: "Best in town! I've tried several competitors and nobody comes close to the quality and service provided here.",
     source: 'Google',
     responded: true,
   },
